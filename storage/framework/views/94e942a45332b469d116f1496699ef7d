@@ -1,0 +1,26 @@
+<div class="chart-wrapper">
+    <div class="chart-title">
+        <form class="form-inline">
+            <div class="form-group">
+                <label>Make</label>
+                <select id='pieMake' data-placeholder="Choose a Make" class="chosen-select"
+                        multiple><?php foreach($makes as $make): ?>
+                        <option><?php echo e($make->make); ?></option><?php endforeach; ?></select>
+                <div class="slider"></div>
+                <a id="pieUpdate" class="btn btn-default btn-sm">Update</a>
+
+            </div>
+        </form>
+    </div>
+    <div class="chart-stage">
+        <div id='pieChartContainer' class="chart-stage">
+            <canvas id="pieChart" width="100%" height="100%" style="padding-right: 30px"></canvas>
+            <!--<div id="grid-1-1">-->
+            <!--<img data-src="holder.js/100%x240/white/text:#grid-1-1">-->
+            <!--</div>-->
+            <div id="pieLegend"></div>
+        </div>
+
+    </div>
+    <div class="chart-notes">Notes about this chart</div>
+</div>
