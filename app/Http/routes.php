@@ -23,6 +23,7 @@ Route::resource('Classified','\app\Models\Classified');
 
 Route::get('data/updateModelByMake','DataController@updateModelByMake');
 
+Route::get('data/makeComparison','DataController@makeComparison');
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',

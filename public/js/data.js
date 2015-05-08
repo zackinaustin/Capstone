@@ -26,9 +26,9 @@ $(document).ready(function () {
     default_make = ['ford', 'chevrolet', 'international', 'jeep'];
     default_model = ['blazer', 'bronco', 'scout', 'wagoneer', 'grand wagoneer', 'bronco_ii'];
     $("#make").val(default_make);
-    $("#model").val(default_model);
+
     $('#make').trigger("chosen:updated");
-    $('#model').trigger("chosen:updated");
+
 
     $.ajax({
         url: 'data/read',
@@ -43,7 +43,7 @@ $(document).ready(function () {
                 dataset_labels.push(value['year']);
                 dataset_num_id.push(value['Num_id']);
                 dataset_ave_counter.push(value['Avg_counter']);
-                dataset_ave_price.push(value['Avg_price'])
+                dataset_ave_price.push(parseFloat(value['Avg_price']).toFixed(2))
 
             })
         },
@@ -90,7 +90,7 @@ $(document).ready(function () {
             $("#price-legend").html(price_Chart.generateLegend());
         }
     });
-    pieChartInitialize();
+
     $('#update').on('click', function () {
         var new_dataset_labels = [];
         var new_dataset_num_id = [];
@@ -119,7 +119,7 @@ $(document).ready(function () {
                     new_dataset_labels.push(value['year']);
                     new_dataset_num_id.push(value['Num_id']);
                     new_dataset_ave_counter.push(value['Avg_counter']);
-                    new_dataset_ave_price.push(value['Avg_price']);
+                    new_dataset_ave_price.push(parseFloat(value['Avg_price']).toFixed(2));
                 })
             },
             complete: function () {
@@ -175,7 +175,7 @@ $(document).ready(function () {
     $('#make').on('change', function () {
         console.log("1");
         var makes = $('#make').val();
-        $('body').addClass('loadinggif');
+        //$('body').addClass('loadinggif');
         $.ajax({
             url: 'data/updateModelByMake',
             data: {
@@ -183,6 +183,7 @@ $(document).ready(function () {
             },
             dataType: 'json',
             beforeSend:function(){
+                loading();
 
             },
             success: function (data) {
@@ -197,9 +198,10 @@ $(document).ready(function () {
             },
             complete: function () {
                 //$('#model_chosen').removeClass('loadinggif');
+                $('#overlay').remove();
             }
         });
     });
-
+    pieChartInitialize();
 
 });

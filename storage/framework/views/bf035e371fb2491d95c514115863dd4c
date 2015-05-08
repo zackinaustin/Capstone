@@ -18,7 +18,7 @@
     </form>
 </div>
 
-<div class="col-sm-12 col-md-6">
+<div class="col-sm-12 col-md-3">
     <div class="chart-wrapper">
         <div class="chart-title">
             Market Share
@@ -37,24 +37,44 @@
     </div>
 
 </div>
-<div class="col-sm-12 col-md-6">
+<div class="col-sm-12 col-md-4">
     <div class="chart-wrapper">
-        <div class="chart-title">Cell Title</div>
+        <div class="chart-title">Make Comparison</div>
         <div class="chart-stage">
-            <img data-src="holder.js/100%x120/white">
+            <div id="radarChartContainer">
+
+            <canvas id="radarChart" width="100%" height="100%" style="padding-right: 30px"></canvas>
+                <div id="radarLegend"></div>
+            </div>
         </div>
         <div class="chart-notes">Notes about this chart</div>
     </div>
 </div>
-<div class="col-sm-6 col-md-4">
+<div class="col-sm-12 col-md-5">
     <div class="chart-wrapper">
-        <div class="chart-title">Cell Title</div>
+        <div class="chart-title">Detail</div>
         <div class="chart-stage">
-            <img data-src="holder.js/100%x120/white">
+            <table class="table" id="radarTable">
+
+                <thead>
+                <tr id="tr">
+                    <th>#</th>
+                    <th>Avg Counter</th>
+                    <th>Avg Price</th>
+                    <th>Num Record</th>
+                    <th>Average Contact</th>
+
+                </tr>
+                </thead>
+                <tbody id="tb">
+
+                </tbody>
+            </table>
         </div>
         <div class="chart-notes">Notes about this chart</div>
     </div>
 </div>
+
 
 
 

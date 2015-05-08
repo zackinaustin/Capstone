@@ -62,9 +62,15 @@ class DataController extends Controller
 
         }
         $make = $request->input('make');
-        $model = $request->input('model');
+
         $selectField = array('year', DB::raw('count(distinct(id)) as Num_id'), DB::raw('avg(counter) as Avg_counter'),DB::raw('avg(price) as Avg_price'));
-        $classifieds = Classified::select($selectField)->where('is_web', '=', $isWeb)->whereIn('adtype', $adTypes)->whereIn('make', $make)->whereIn('model', $model)->groupBy('year')->get();
+        $classifieds = Classified::select($selectField)->where('is_web', '=', $isWeb)->whereIn('adtype', $adTypes)->whereIn('make', $make)->groupBy('year');
+        if ($request->has('model')){
+            $model = $request->input('model');
+            $classifieds=$classifieds->whereIn('model', $model);
+
+        }
+        $classifieds=$classifieds->get();
         return $classifieds;
 
     }
@@ -97,6 +103,14 @@ class DataController extends Controller
         return $result;
 
 
+    }
+
+    public function makeComparison(Request $req){
+        $yearRange=$req->input('yearRange');
+        $makes=$req->input('make');
+        $selectField=DB::raw('make, avg(counter) as avg_counter, avg(price) as avg_price, count(id) as numbers,avg(contacted) as avg_contacted');
+        $makes=Classified::select($selectField)->whereBetween('year',$yearRange)->WhereIn('make',$makes)->groupBy('make')->orderBy('numbers','desc')->get();
+        return $makes;
     }
 
 }

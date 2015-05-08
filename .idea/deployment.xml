@@ -10,6 +10,7 @@
           <excludedPaths>
             <excludedPath local="true" path="$PROJECT_DIR$/vendor" />
             <excludedPath local="true" path="$PROJECT_DIR$/public/css/bootstrap" />
+            <excludedPath local="true" path="$PROJECT_DIR$/storage" />
           </excludedPaths>
         </serverdata>
       </paths>
